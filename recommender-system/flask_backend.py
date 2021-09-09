@@ -1,7 +1,9 @@
-from modules.dataset_module import DatasetModule
-from modules.algorithm_module import AlgorithmModule
-from modules.group_module import GroupModule
-from modules.aggregation_module import AggregationModule
+
+
+from recommender.dataset import Dataset
+from recommender.algorithm import Algorithm
+from recommender.group import Group
+from recommender.aggregator import Aggregator
 
 from server_configuration import *
 import pandas as pd
@@ -38,7 +40,6 @@ rating_scale = cfg['rating_scale']
 lib = cfg['lib']
 verbose = cfg['verbose']
 algorithm = cfg['algorithm']
-custom_group = cfg['ag_test_group']
 
 # Proceso de carga del programa
 def generateUserRegister(user, song_params, value):
@@ -123,7 +124,7 @@ def group_recommendation():
 
         # 2. Se genera la predicción para el grupo
         # Se carga el dataset y se añaden los usuarios
-        dm = DatasetModule(dataset_file, 
+        dm = Dataset(dataset_file, 
                         sep='\t', 
                         rating_scale=(0,4), 
                         cols=["uid", "iid", "rating"], 
@@ -137,22 +138,19 @@ def group_recommendation():
         # TODO
 
         # # 3. Se genera el grupo
-        group = GroupModule(group_name=group_name, group_context_name="web")
+        group = Group(group_name=group_name, group_context_name="web")
         group.add_list_of_users(users_group)
 
         # # 4. Se entrena el modelo 
-        am = AlgorithmModule(dm, lib=lib, algorithm=algorithm)
+        am = Algorithm(dm, lib=lib, algorithm=algorithm)
         am.fit_model()
 
         # # 5. Se realiza la agregación
-        aggregation = AggregationModule(dm, am, group, aggregation_method="mpl")
+        aggregation = Aggregator(dm, am, group, aggregation_method="mpl")
         rec = aggregation.perform_group_recommendation()
-        print()
-        print()
-        print()
+
         aggregation.print_group_recommendation()
-        print()
-        print()
+
 
         # 6. Obtenemos la playlist en formato correcto;
         queue = []
@@ -163,7 +161,6 @@ def group_recommendation():
             n_songs += 1
             new_song = db.collection(u'songs').document(str(song_id)).get()
             if new_song.exists:
-                # print(f'Document data: {new_song.to_dict()}')
                 queue.append(new_song.to_dict())
             else:
                 print(u'No such song!', song_id)
@@ -171,10 +168,8 @@ def group_recommendation():
         # # 7. Opcionalmente se evalua el resultado
         # aggregation.evaluate()
 
-        # Se sube la playlist a la base datos
-        # music_playlist = users[0]['songs']['items']
+        # Se sube la playlist a la base datos, buscando forzar la reactividad en el prototipo
         db.collection(u'rooms').document(groupid).collection(u'playlists').document('queue').set({"items": queue})
-
 
         response['code'] = 200
 
