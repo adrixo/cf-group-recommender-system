@@ -6,7 +6,7 @@ It has been tested in the music domain (song recommendation), both by performing
 During the development of this *recommender system/benchmark*, an own dataset has been created and will be published soon. For more information see section 4.
 
 
-# 1. Execution
+# 1. Instalation and execution
 Download and dependencies installation:
 ```bash
 git clone https://github.com/adrixo/cf-group-recommender-system
@@ -18,6 +18,13 @@ Execution of a simple recomendation:
 cd recommender
 python3 recommender_example.py
 ```
+
+Execution of tests:
+```bash
+cd recommender/tests/
+python3 test_name.py
+```
+
 Execution of automated experiments (may require high computational cost with large datasets):
 ```bash
 cd recommender
@@ -26,7 +33,7 @@ python3 experiments.py
 
 ## Automated experiments and results
 
-The following experiment is proposed to test the results of the recommendations with different configurations:
+The following experiment is proposed to test the results of the recommendations with different configurations in order to perform a comparative evaluation:
 
 1. For each context in [none, chill, fitness, party]
 2. For each algorithm in [baseline, svd, coclustering, nmf, knn]
@@ -55,6 +62,9 @@ After the execution, the *recommender-system/results_file.csv* is created and ca
       <td><img src="img/results4.png" alt="4" ></td>
   </tr>
 </table>
+
+#### Tests
+tests have been developed for each of the classes, can be found in recommender-system/recommender/tests/ with the name *classname*_tests.py
 
 # 2. Context-aware group recomendation 
 
