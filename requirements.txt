@@ -1,0 +1,6 @@
+scikit-surprise
+pandas
+numpy
+Flask==1.1.2
+flask_cors
+Flask-RESTful
