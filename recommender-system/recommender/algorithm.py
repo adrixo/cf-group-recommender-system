@@ -83,7 +83,7 @@ class Algorithm():
 
     def fit_model(self, checktime=True):
         '''
-            Fitting the model
+            Fits the model
         '''
         #TODO comprobación de errores
         start_time = datetime.datetime.now()

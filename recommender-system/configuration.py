@@ -3,11 +3,13 @@ import sys
 sys.path.append(".")
 dataset_path = 'datasets/'
 
+from datasets.experiment_groups import *
 
 cfg = {
     'verbose'       : True,
 # Datasets:
     'example_dataset' : dataset_path + 'example_dataset.csv',
+    'experiment_dataset' : dataset_path + 'reduced_50.csv',
     'large_dataset' : dataset_path + 'test_large.csv',
     'custom_dataset' : dataset_path + 'custom.csv',
 # Dataset configuration:
@@ -24,13 +26,13 @@ cfg = {
     'example_group' : ["2", "3", "4"],
     'example_group_name' : 'example_group',
     'example_group_context' : 'example_context',
-    'experiment_groups': [{'name':'random_0','members':["1","2","3","4"]},{'name':'random_1','members':["2","4"]},{'name':'random_3','members':["1","3","4"]}],
+    'experiment_groups': random + chill + fitness + party,
     'custom_user'   : "2",
 # Librery and algorithms
     'lib'           : 'surprise',
     'libs'          : ['surprise'],
     'algorithm'     : 'svd',
-    'surprise_algorithm_col' : ["baseline", "knn", "nmf", "coclustering", "svd"],
+    'surprise_algorithm_col' : ["coclustering", "svd"],
     'aggregation_methods': ["avg","add","app","avm","lms","maj","mpl","mul"],
     'implemented_aggregation_methods': ["avg","add","app","avm","lms","maj","mpl","mul"],
 # Contexts
