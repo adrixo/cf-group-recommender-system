@@ -8,10 +8,8 @@ seed(1)
 from configuration import *
 import pandas as pd
 
-dataset_name = 'reduced_50'
-# dataset_file = 'lastfm1k_pacula_ratings_spotify_features_v1'
-dataset_file = '../'+dataset_name+'.csv'
-output_file_unified = '../groups_'+dataset_name+'.py'
+dataset_file = '../../'+cfg['experiment_dataset']
+output_file_unified = '../experiment_groups.py'
 sep = cfg['sep']
 
 f = open(output_file_unified, "w")
