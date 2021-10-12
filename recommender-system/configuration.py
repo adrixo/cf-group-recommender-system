@@ -1,6 +1,4 @@
 import datetime
-import sys
-sys.path.append(".")
 dataset_path = 'datasets/'
 
 from datasets.experiment_groups import *
@@ -9,7 +7,7 @@ cfg = {
     'verbose'       : True,
 # Datasets:
     'example_dataset' : dataset_path + 'example_dataset.csv',
-    'experiment_dataset' : dataset_path + 'reduced_50.csv',
+    'experiment_dataset' : dataset_path + 'example_dataset.csv',
     'large_dataset' : dataset_path + 'test_large.csv',
     'custom_dataset' : dataset_path + 'custom.csv',
 # Dataset configuration:

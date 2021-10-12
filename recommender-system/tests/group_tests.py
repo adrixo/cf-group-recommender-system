@@ -1,6 +1,3 @@
-import sys
-sys.path.append("../")
-
 from recommender.group import Group
 
 from configuration import *

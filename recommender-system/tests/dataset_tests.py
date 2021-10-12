@@ -1,7 +1,3 @@
-import sys
-sys.path.append("../")
-
-
 from recommender.dataset import Dataset
 from configuration import *
 

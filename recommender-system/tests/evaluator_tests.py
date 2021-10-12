@@ -1,6 +1,3 @@
-import sys
-sys.path.append("../")
-
 from recommender.dataset import Dataset
 from recommender.algorithm import Algorithm
 from recommender.group import Group

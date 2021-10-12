@@ -1,5 +1,3 @@
-import sys
-sys.path.append("../../")
 from random import random
 from random import randint
 from random import seed

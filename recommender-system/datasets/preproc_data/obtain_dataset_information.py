@@ -1,5 +1,3 @@
-import sys
-sys.path.append("../../")
 import pickle
 
 from configuration import *
